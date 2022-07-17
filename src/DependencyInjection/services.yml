@@ -1,0 +1,21 @@
+parameters:
+    yapro.seo_bundle.redirect_page: '/redirect/page'
+    yapro.seo_bundle.security_key: 'securityKey'
+    yapro.seo_bundle.current_http_host: 'site.com'
+    yapro.seo_bundle.protocols: ['https', 'http', 'ftp']
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+        bind:
+            $redirectPage: '%yapro.seo_bundle.redirect_page%'
+            $securityKey: '%yapro.seo_bundle.security_key%'
+            $currentHttpHost: '%yapro.seo_bundle.current_http_host%'
+            $protocols: '%yapro.seo_bundle.protocols%'
+    YaPro\SeoBundle\:
+        resource: '../'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/RedirectValueObject.php'
+            - '../src/SeoBundle.php'

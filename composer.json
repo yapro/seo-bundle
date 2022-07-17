@@ -1,0 +1,15 @@
+{
+    "name": "yapro/seo-bundle",
+    "version": "1.0",
+    "require": {
+        "php": "7.4.*"
+    },
+    "require-dev": {
+        "yapro/helpers": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "YaPro\\SeoBundle\\": "src/"
+        }
+    }
+}

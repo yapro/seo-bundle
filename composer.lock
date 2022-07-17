@@ -1,0 +1,76 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "6a3177fd020c9ede237b91b4a44cd1c2",
+    "packages": [],
+    "packages-dev": [
+        {
+            "name": "yapro/helpers",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yapro/helpers.git",
+                "reference": "fe3ed420c9829bcc1b0d3cbc84d7ced6d5ec4ba7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yapro/helpers/zipball/fe3ed420c9829bcc1b0d3cbc84d7ced6d5ec4ba7",
+                "reference": "fe3ed420c9829bcc1b0d3cbc84d7ced6d5ec4ba7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": ">=6.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "YaPro\\Helper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lebedenko Nikolay",
+                    "email": "totx@ya.ru",
+                    "homepage": "http://yapro.ru"
+                }
+            ],
+            "description": "Functions that does not exist in native PHP",
+            "homepage": "https://github.com/yapro/helpers",
+            "keywords": [
+                "extensions",
+                "function",
+                "helpers",
+                "library",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/yapro/helpers/issues",
+                "source": "https://github.com/yapro/helpers/tree/v1.0.3"
+            },
+            "time": "2022-02-16T15:13:52+00:00"
+        }
+    ],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "yapro/helpers": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": {
+        "php": "7.4.*"
+    },
+    "platform-dev": [],
+    "plugin-api-version": "2.0.0"
+}
