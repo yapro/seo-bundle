@@ -2,6 +2,8 @@
 
 SEO useful functionality
 
+![lib tests](https://github.com/yapro/seo-bundle/actions/workflows/main.yml/badge.svg)
+
 ## Installation
 
 Add as a requirement in your `composer.json` file or run for prod:
