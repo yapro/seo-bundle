@@ -16,7 +16,7 @@ class ContentManager
         LinkManager $linkManager
     ) {
         $this->linkManager = $linkManager;
-        $this->uniq = sha1(uniqid(time()));
+        $this->uniq = sha1(uniqid());
     }
 
     public function getSafeHtmlWithSeoLinks(string $html)
