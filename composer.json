@@ -1,6 +1,5 @@
 {
     "name": "yapro/seo-bundle",
-    "version": "1.0",
     "require": {
         "php": ">=7.4.0"
     },
