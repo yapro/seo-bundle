@@ -6,6 +6,7 @@ namespace YaPro\SeoBundle;
 
 class LinkManager
 {
+    public const STATUS_REDIRECT_IS_ALLOWED = 'Redirect is allowed';
     public const STATUS_I_DON_T_HAVE_GET_VARIABLE_NAMED_KEY = 'I don`t have get-variable named key';
     public const STATUS_I_DON_T_HAVE_GET_VARIABLE_NAMED_TO = 'I don`t have get-variable named to';
     public const STATUS_WRONG_ACCESS_KEY = 'Wrong access key';
@@ -52,7 +53,8 @@ class LinkManager
         }
         $key = $keyAndUrl['0'];
         $url = str_replace($this->anchorSymbol, '#', $keyAndUrl['1']);
-        if ($key !== $this->getKey($url)) {
+        // замену &amp; на & делает браузер в адресной строке, поэтому допускается и такой вариант:
+        if ($key !== $this->getKey($url) && $key !== $this->getKey(str_replace('&', '&amp;', $url))) {
             return new RedirectValueObject(404, self::STATUS_WRONG_ACCESS_KEY);
         }
         $components = parse_url($url);
@@ -75,7 +77,7 @@ class LinkManager
             return new RedirectValueObject(404, self::STATUS_REDIRECT_ON_CURRENT_HTTP_HOST);
         }
 
-        return new RedirectValueObject(200, 'Redirect is allowed', $url);
+        return new RedirectValueObject(200, self::STATUS_REDIRECT_IS_ALLOWED, $url);
     }
 
     public function getSeoLink(string $url): string

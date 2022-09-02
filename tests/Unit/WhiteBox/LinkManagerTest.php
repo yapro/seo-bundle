@@ -8,6 +8,8 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use YaPro\SeoBundle\LinkManager;
 
+use function str_replace;
+
 class LinkManagerTest extends TestCase
 {
     public function testGetLink()
@@ -84,6 +86,19 @@ class LinkManagerTest extends TestCase
         yield [
             'requestUrl' => $linkManager->getSeoLink('http://test.ru'),
             'expectedStatus' => LinkManager::STATUS_REDIRECT_ON_CURRENT_HTTP_HOST,
+        ];
+        yield [
+            'requestUrl' => $linkManager->getSeoLink('http://external.ru/page'),
+            'expectedStatus' => LinkManager::STATUS_REDIRECT_IS_ALLOWED,
+        ];
+        yield [
+            'requestUrl' => $linkManager->getSeoLink('http://external.ru/page?a=1&amp;s=2'),
+            'expectedStatus' => LinkManager::STATUS_REDIRECT_IS_ALLOWED,
+        ];
+        yield [
+            // такую замену делает браузер:
+            'requestUrl' => str_replace('&amp;', '&', $linkManager->getSeoLink('http://external.ru/page?a=1&amp;s=2')),
+            'expectedStatus' => LinkManager::STATUS_REDIRECT_IS_ALLOWED,
         ];
     }
 

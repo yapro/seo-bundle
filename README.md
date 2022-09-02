@@ -95,7 +95,7 @@ XDEBUG_SESSION=common \
 XDEBUG_MODE=debug \
 XDEBUG_CONFIG="max_nesting_level=200 client_port=9003 client_host=host.docker.internal" \
 ./phpunit.phar --cache-result-file=/tmp/phpunit.cache -v --stderr --stop-on-incomplete --stop-on-defect \
---stop-on-failure --stop-on-warning --fail-on-warning --stop-on-risky --fail-on-risky
+--stop-on-failure --stop-on-warning --fail-on-warning --stop-on-risky --fail-on-risky tests
 ```
 
 Cs-Fixer:
