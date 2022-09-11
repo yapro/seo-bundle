@@ -6,9 +6,8 @@ namespace YaPro\SeoBundle\Tests\Unit\WhiteBox;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
-use YaPro\SeoBundle\LinkManager;
-
 use function str_replace;
+use YaPro\SeoBundle\LinkManager;
 
 class LinkManagerTest extends TestCase
 {
