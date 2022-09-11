@@ -67,6 +67,15 @@ User-agent: *
 Disallow: /redirect/page
 ```
 
+## Extra
+
+You can automatically mark all pages with any get variables with header "X-Robots-Tag: noindex, nofollow" by adding to config/services.yaml:
+```yaml
+    YaPro\SeoBundle\NoindexNofollowResponseListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.response }
+```
+
 ## Development
 
 Build:
