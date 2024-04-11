@@ -57,7 +57,7 @@ public function seoRedirect(Request $request, LinkManager $linkManager): Respons
     if ($redirect->getHttpStatus() === 200) {
         return new Response('<META HTTP-EQUIV="Refresh" CONTENT="0; URL=' . $redirect->getUrl() . '">', 404);
     }
-    throw $this->createNotFoundException('Redirect not found');
+    throw $this->createNotFoundException('Redirect page not found');
 }
 ```
 

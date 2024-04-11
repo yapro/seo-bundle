@@ -35,7 +35,13 @@ class LinkManager
         $this->protocols = $protocols ?? ['https', 'http', 'ftp'];
     }
 
-    public function getRedirect(?string $requestUrl = ''): RedirectValueObject
+    // из переданного URL фомрирует путь к странице, которая заредиректит на указанный URL
+    public function getSeoLink(string $url): string
+    {
+        return $this->redirectPage . '?key=' . $this->getKey($url) . '&to=' . str_replace('#', $this->anchorSymbol, $url);
+    }
+
+    public function getRedirect(string $requestUrl = ''): RedirectValueObject
     {
         if (empty(trim($requestUrl))) {
             $requestUrl = $_SERVER['REQUEST_URI'];
@@ -80,31 +86,8 @@ class LinkManager
         return new RedirectValueObject(200, self::STATUS_REDIRECT_IS_ALLOWED, $url);
     }
 
-    public function getSeoLink(string $url): string
-    {
-        return $this->redirectPage . '?key=' . $this->getKey($url) . '&to=' . str_replace('#', $this->anchorSymbol, $url);
-    }
-
-    public function getRedirectPage(): string
-    {
-        return $this->redirectPage;
-    }
-
-    public function getCurrentHttpHost(): string
-    {
-        return $this->currentHttpHost;
-    }
-
-    public function getProtocols(): array
-    {
-        return $this->protocols;
-    }
-
-    public function getKey(string $url): string
-    {
-        return sha1($this->securityKey . $url);
-    }
-
+    // редиректит классически (без использования страницы 200, в которой <META HTTP-EQUIV="Refresh" CONTENT="0; URL=...)
+    // лучше использовать seoRedirect описанный в README.md чтобы на сайте не было большого количества 302
     public function redirectionBasedOn(string $requestUrl = ''): void
     {
         $redirect = $this->getRedirect($requestUrl);
@@ -113,5 +96,29 @@ class LinkManager
         } else {
             http_response_code(404);
         }
+    }
+
+    // @internal
+    public function getRedirectPage(): string
+    {
+        return $this->redirectPage;
+    }
+
+    // @internal
+    public function getCurrentHttpHost(): string
+    {
+        return $this->currentHttpHost;
+    }
+
+    // @internal
+    public function getProtocols(): array
+    {
+        return $this->protocols;
+    }
+
+    // @internal
+    public function getKey(string $url): string
+    {
+        return sha1($this->securityKey . $url);
     }
 }

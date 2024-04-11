@@ -1,10 +1,11 @@
 {
     "name": "yapro/seo-bundle",
     "require": {
-        "php": ">=7.4.0"
+        "php": ">=7.4.0",
+        "yapro/helpers": "*"
     },
     "require-dev": {
-        "yapro/helpers": "dev-master"
+        "phpunit/phpunit": "*"
     },
     "autoload": {
         "psr-4": {
