@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace YaPro\SeoBundle\Tests\Unit\WhiteBox;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use YaPro\SeoBundle\UrlManager;
 
