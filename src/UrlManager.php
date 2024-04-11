@@ -1,11 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace YaPro\SeoBundle;
 
 class UrlManager
 {
-    private $translit = array(
+    private $translit = [
         'а' => 'a',
         'б' => 'b',
         'в' => 'v',
@@ -41,7 +42,8 @@ class UrlManager
         'я' => 'ya',
         'є' => 'e',
         'і' => 'i',
-        'ї' => 'yi');
+        'ї' => 'yi'
+    ];
 
     // возвращает текст в транслитерированном виде, с заменой на символ _ всех символов кроме букв, цифр и тире
     // Функция создана потому, что Transliterator::create('Any-Latin; Latin-ASCII')->transliterate($string); работает не так как хотелось.
