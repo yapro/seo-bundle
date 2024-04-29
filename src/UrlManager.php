@@ -47,6 +47,7 @@ class UrlManager
 
     // возвращает текст в транслитерированном виде, с заменой на символ _ всех символов кроме букв, цифр и тире
     // Функция создана потому, что Transliterator::create('Any-Latin; Latin-ASCII')->transliterate($string); работает не так как хотелось.
+    // todo знаки нужно заменять на слова, например % заменить на procentov, $ на dollarov (склонения нужно подбирать в зависиости от числа до знака %/$/etc)
     public function transliterate(string $text): string
     {
         $text = mb_strtolower($text);
