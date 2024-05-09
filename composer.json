@@ -5,7 +5,8 @@
         "yapro/helpers": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "*"
+        "phpunit/phpunit": "*",
+        "nesbot/carbon": "*"
     },
     "autoload": {
         "psr-4": {
