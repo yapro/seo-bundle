@@ -76,6 +76,16 @@ You can automatically mark all pages with any get variables with header "X-Robot
             - { name: kernel.event_listener, event: kernel.response }
 ```
 
+You can automatically register the information about site pages without LastModified header:
+```yaml
+YaPro\SeoBundle\LastModifiedResponseListener:
+    arguments:
+        - "@monolog.logger"
+        - ["/admin", "/login", "/etc"]
+    tags:
+        - { name: kernel.event_listener, event: kernel.response }
+```
+
 ## Development
 
 Build:
