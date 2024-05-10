@@ -6,10 +6,8 @@ namespace YaPro\SeoBundle\Tests\Unit\WhiteBox;
 
 use Carbon\CarbonImmutable;
 use Carbon\CarbonInterface;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use YaPro\SeoBundle\LastModifiedResponseListener;
-use YaPro\SeoBundle\LinkManager;
 
 class LastModifiedResponseListenerTest extends TestCase
 {
