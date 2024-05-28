@@ -8,7 +8,7 @@ use Carbon\CarbonImmutable;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
-// https://last-modified.com/ru/last-modified-header
+// Логирует ошибку о том, что на странице не установлена дата модификации https://last-modified.com/ru/last-modified-header
 class LastModifiedResponseListener
 {
     public const LAST_MODIFIED_HEADER_NAME = 'Last-Modified';
@@ -38,6 +38,6 @@ class LastModifiedResponseListener
 
     public static function format(CarbonImmutable $date): string
     {
-        return $date->toRfc7231String();
+        return $date->toRfc7231String(); // Wed, 21 Oct 2015 07:28:00 GMT
     }
 }
