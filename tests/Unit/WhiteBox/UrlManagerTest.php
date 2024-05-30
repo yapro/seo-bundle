@@ -12,7 +12,11 @@ class UrlManagerTest extends TestCase
     public function testTransliterate(): void
     {
         $object = new UrlManager();
+        
         $actual = $object->transliterate(' Привет Мир $! ');
         $this->assertSame('privet_mir', $actual);
+        
+        $actual = $object->transliterate('Привет super-Мир.');
+        $this->assertSame('privet_super-mir', $actual);
     }
 }
