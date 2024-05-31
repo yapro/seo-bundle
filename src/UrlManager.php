@@ -50,10 +50,10 @@ class UrlManager
     public function transliterate(string $text): string
     {
         // todo знаки нужно заменять на склонения - подбирать в зависиости от числа до знака %/$/etc
-        $text = str_replace('%', 'процентов', $text);
-        $text = str_replace('$', 'долларов', $text);
-        $text = str_replace('₽', 'рублей', $text);
-        $text = str_replace('¥', 'йен', $text);
+        $text = str_replace('%', ' процентов', $text);
+        $text = str_replace('$', ' долларов', $text);
+        $text = str_replace('₽', ' рублей', $text);
+        $text = str_replace('¥', ' йен', $text);
         $text = mb_strtolower($text);
         $text = strtr($text, $this->translit);
         $text = preg_replace('/[^-a-z0-9]/sUi', '_', $text);
