@@ -14,7 +14,7 @@ class UrlManagerTest extends TestCase
         $object = new UrlManager();
 
         $actual = $object->transliterate(' Привет Мир $! ');
-        $this->assertSame('privet_mir', $actual);
+        $this->assertSame('privet_mir_dollarov', $actual);
 
         $actual = $object->transliterate('Привет super-Мир.');
         $this->assertSame('privet_super-mir', $actual);
