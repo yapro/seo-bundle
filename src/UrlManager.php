@@ -45,11 +45,15 @@ class UrlManager
         'ї' => 'yi',
     ];
 
-    // возвращает текст в транслитерированном виде, с заменой на символ _ всех символов кроме букв, цифр и тире
+    // Возвращает текст в транслитерированном виде, с заменой на символ _ всех символов кроме букв, цифр и тире
     // Функция создана потому, что Transliterator::create('Any-Latin; Latin-ASCII')->transliterate($string); работает не так как хотелось.
-    // todo знаки нужно заменять на слова, например % заменить на procentov, $ на dollarov (склонения нужно подбирать в зависиости от числа до знака %/$/etc)
     public function transliterate(string $text): string
     {
+        // todo знаки нужно заменять на склонения - подбирать в зависиости от числа до знака %/$/etc
+        $text = str_replace('%', 'процентов', $text);
+        $text = str_replace('$', 'долларов', $text);
+        $text = str_replace('₽', 'рублей', $text);
+        $text = str_replace('¥', 'йен', $text);
         $text = mb_strtolower($text);
         $text = strtr($text, $this->translit);
         $text = preg_replace('/[^-a-z0-9]/sUi', '_', $text);
