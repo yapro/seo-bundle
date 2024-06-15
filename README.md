@@ -71,9 +71,16 @@ Disallow: /redirect/page
 
 You can automatically mark all pages with any get variables with header "X-Robots-Tag: noindex" by adding to config/services.yaml:
 ```yaml
-    YaPro\SeoBundle\NoindexResponseListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.response }
+YaPro\SeoBundle\NoindexResponseListener:
+    tags:
+        - { name: kernel.event_listener, event: kernel.response }
+```
+
+You can automatically redirect URL has uppercase symbols ("get variables" are checked too) to the lowercase URL by adding to config/services.yaml:
+```yaml
+YaPro\SeoBundle\CaseSensitiveRequestListener:
+    tags:
+        - { name: kernel.event_listener, event: kernel.request }
 ```
 
 You can automatically register the information about site pages without LastModified header:
