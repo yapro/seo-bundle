@@ -6,7 +6,6 @@ namespace YaPro\SeoBundle;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\Event\ResponseEvent;
 
 // если кто-то зайдет на страницу в которой будут символы в верхнем реигстре, его перенаправит на страницу с символами в нижнем регистре
 class CaseSensitiveRequestListener
