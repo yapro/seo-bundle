@@ -61,4 +61,17 @@ class UrlManager
 
         return trim($text, '_');
     }
+
+    public function transliterateEn(string $text): string
+    {
+        $text = str_replace('%', ' percent', $text);
+        $text = str_replace('$', ' dollars', $text);
+        $text = str_replace('₽', ' rubles', $text);
+        $text = str_replace('¥', ' yen', $text);
+        $text = mb_strtolower($text);
+        $text = preg_replace('/[^-a-z0-9]/sUi', '_', $text);
+        $text = preg_replace('/[\_]{2,}/', '_', $text);
+
+        return trim($text, '_');
+    }
 }
