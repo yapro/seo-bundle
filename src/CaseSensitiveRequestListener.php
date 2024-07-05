@@ -11,28 +11,26 @@ use Symfony\Component\HttpKernel\Event\RequestEvent;
 // если кто-то зайдет на страницу в которой будут символы в верхнем реигстре, его перенаправит на страницу с символами в нижнем регистре
 class CaseSensitiveRequestListener
 {
-    private LoggerInterface $logger;
-
-    public function __construct(LoggerInterface $logger)
-    {
-        $this->logger = $logger;
-    }
-    
     public function onKernelRequest(RequestEvent $event): void
     {
         if (!$event->isMainRequest()) {
             return;
         }
-        $request = $event->getRequest();
-        $requestUri = $request->getRequestUri();
-        $lowercasePath = mb_strtolower($request->getRequestUri());
+        if (!isset($_SERVER['REQUEST_URI'])) {
+            return;
+        }
+        $url = parse_url($_SERVER['REQUEST_URI']);
+        $requestUri = $url['path'] ?? '';
+        $lowercasePath = mb_strtolower($requestUri);
         if ($requestUri === $lowercasePath) {
             return;
         }
-        $this->logger->notice('redirectToLowercase', [
-            'requestUri' => $requestUri,
-            'lowercasePath' => $lowercasePath,
-        ]);
-        $event->setResponse(new RedirectResponse($request->getUriForPath($lowercasePath), 301));
+        if (isset($url['query'])) {
+            $lowercasePath .= '?' . $url['query'];
+        }
+        if (isset($url['fragment'])) {
+            $lowercasePath .= '#' . $url['fragment'];
+        }
+        $event->setResponse(new RedirectResponse($event->getRequest()->getUriForPath($lowercasePath), 301));
     }
 }
