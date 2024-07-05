@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace YaPro\SeoBundle;
 
-use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
