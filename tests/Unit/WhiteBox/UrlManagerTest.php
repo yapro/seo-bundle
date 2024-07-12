@@ -20,7 +20,7 @@ class UrlManagerTest extends TestCase
         $this->assertSame('privet_super-mir', $actual);
     }
 
-    public function test_prepareEnglishSlug(): void
+    public function testPrepareEnglishSlug(): void
     {
         $object = new UrlManager();
 
