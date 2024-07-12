@@ -71,9 +71,9 @@ class UrlManager
         $text = str_replace('+', ' plus', $text);
         $text = str_replace('—', '-', $text);
         $text = str_replace('–', '-', $text);
-        $text = str_replace(' - ', '–', $text);
-        $text = str_replace('- ', '–', $text);
-        $text = str_replace(' -', '–', $text);
+        $text = str_replace(' - ', '-', $text);
+        $text = str_replace('- ', '-', $text);
+        $text = str_replace(' -', '-', $text);
         $text = str_replace('\'s ', ' ', $text); // children's cards -> children cards
         $text = str_replace('`s ', ' ', $text); // children`s cards -> children cards
         $text = mb_strtolower($text);
