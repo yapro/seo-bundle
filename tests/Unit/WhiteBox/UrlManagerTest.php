@@ -19,7 +19,7 @@ class UrlManagerTest extends TestCase
         $actual = $object->transliterate('Привет super-Мир.');
         $this->assertSame('privet_super-mir', $actual);
     }
-    
+
     public function test_prepareEnglishSlug(): void
     {
         $object = new UrlManager();
