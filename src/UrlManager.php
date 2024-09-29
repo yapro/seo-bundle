@@ -45,9 +45,10 @@ class UrlManager
         'ї' => 'yi',
     ];
 
-    // Возвращает текст в транслитерированном виде, с заменой на символ _ всех символов кроме букв, цифр и тире
+    // Возвращает текст в транслитерированном виде, с заменой на символ "-" всех символов кроме букв, цифр и тире
     // Функция создана потому, что Transliterator::create('Any-Latin; Latin-ASCII')->transliterate($string); работает не так как хотелось.
-    public function transliterate(string $text): string
+    // Символ "-" выбран согалсно рекомендации https://developers.google.com/search/docs/crawling-indexing/url-structure?hl=ru
+    public function transliterate(string $text, string $defaultSign = '-'): string
     {
         // todo знаки нужно заменять на склонения - подбирать в зависиости от числа до знака %/$/etc
         $text = str_replace('%', ' процентов', $text);
@@ -56,10 +57,10 @@ class UrlManager
         $text = str_replace('¥', ' йен', $text);
         $text = mb_strtolower($text);
         $text = strtr($text, $this->translit);
-        $text = preg_replace('/[^-a-z0-9]/sUi', '_', $text);
-        $text = preg_replace('/[\_]{2,}/', '_', $text);
+        $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
+        $text = preg_replace('/[\\'.$defaultSign.']{2,}/', $defaultSign, $text);
 
-        return trim($text, '_');
+        return trim($text, $defaultSign);
     }
 
     public function prepareEnglishSlug(string $text): string
