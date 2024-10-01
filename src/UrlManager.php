@@ -58,7 +58,7 @@ class UrlManager
         $text = mb_strtolower($text);
         $text = strtr($text, $this->translit);
         $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
-        $text = preg_replace('/[\\'.$defaultSign.']{2,}/', $defaultSign, $text);
+        $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
 
         return trim($text, $defaultSign);
     }
