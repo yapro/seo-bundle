@@ -63,7 +63,7 @@ class UrlManager
         return trim($text, $defaultSign);
     }
 
-    public function prepareEnglishSlug(string $text): string
+    public function prepareEnglishSlug(string $text, string $defaultSign = '-'): string
     {
         $text = str_replace('%', ' percent', $text);
         $text = str_replace('$', ' dollars', $text);
@@ -78,8 +78,8 @@ class UrlManager
         $text = str_replace('\'s ', ' ', $text); // children's cards -> children cards
         $text = str_replace('`s ', ' ', $text); // children`s cards -> children cards
         $text = mb_strtolower($text);
-        $text = preg_replace('/[^-a-z0-9]/sUi', '_', $text);
-        $text = preg_replace('/[\_]{2,}/', '_', $text);
+        $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
+        $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
 
         return trim($text, '_');
     }
