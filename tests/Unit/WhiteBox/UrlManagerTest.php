@@ -14,10 +14,10 @@ class UrlManagerTest extends TestCase
         $object = new UrlManager();
 
         $actual = $object->transliterate(' Привет Мир $! ');
-        $this->assertSame('privet_mir_dollarov', $actual);
+        $this->assertSame('privet-mir-dollarov', $actual);
 
         $actual = $object->transliterate('Привет super-Мир.');
-        $this->assertSame('privet_super-mir', $actual);
+        $this->assertSame('privet-super-mir', $actual);
     }
 
     public function testPrepareEnglishSlug(): void
@@ -25,10 +25,10 @@ class UrlManagerTest extends TestCase
         $object = new UrlManager();
 
         $actual = $object->prepareEnglishSlug(' Children\'s $! ');
-        $this->assertSame('children_dollars', $actual);
+        $this->assertSame('children-dollars', $actual);
 
         $actual = $object->prepareEnglishSlug(' Children`s $! ');
-        $this->assertSame('children_dollars', $actual);
+        $this->assertSame('children-dollars', $actual);
 
         $actual = $object->prepareEnglishSlug(' foo — bar – baz ');
         $this->assertSame('foo-bar-baz', $actual);
