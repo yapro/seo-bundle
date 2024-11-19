@@ -88,7 +88,7 @@ class UrlManager
     {
         $result = [];
         foreach (explode('/', $path) as $slug) {
-            $slug = $this->prepareEnglishSlug($slug);
+            $slug = $this->transliterateEnglishSlug($slug);
             if (empty($slug)) {
                 continue;
             }
