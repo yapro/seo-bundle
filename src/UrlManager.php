@@ -83,7 +83,7 @@ class UrlManager
 
         return trim($text, $defaultSign);
     }
-    
+
     public function transliterateEnglishPath(string $path): string
     {
         $result = [];
