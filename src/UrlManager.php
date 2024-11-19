@@ -94,7 +94,7 @@ class UrlManager
             }
             $result[] = $slug;
         }
-        
+
         return '/' . implode('/', $result);
     }
 }
