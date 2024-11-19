@@ -24,13 +24,27 @@ class UrlManagerTest extends TestCase
     {
         $object = new UrlManager();
 
-        $actual = $object->prepareEnglishSlug(' Children\'s $! ');
+        $actual = $object->transliterateEnglishSlug(' Children\'s $! ');
         $this->assertSame('children-dollars', $actual);
 
-        $actual = $object->prepareEnglishSlug(' Children`s $! ');
+        $actual = $object->transliterateEnglishSlug(' Children`s $! ');
         $this->assertSame('children-dollars', $actual);
 
-        $actual = $object->prepareEnglishSlug(' foo — bar – baz ');
+        $actual = $object->transliterateEnglishSlug(' foo — bar – baz ');
         $this->assertSame('foo-bar-baz', $actual);
+    }
+
+    public function testPrepareEnglishPath(): void
+    {
+        $object = new UrlManager();
+
+        $actual = $object->transliterateEnglishPath('The/ Children\'s $! ');
+        $this->assertSame('/the/children-dollars', $actual);
+
+        $actual = $object->transliterateEnglishPath('/the/ Children`s $! ');
+        $this->assertSame('/the/children-dollars', $actual);
+
+        $actual = $object->transliterateEnglishPath(' / THE / Foo / bar – baz ');
+        $this->assertSame('/the/foo/bar-baz', $actual);
     }
 }

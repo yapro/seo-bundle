@@ -63,7 +63,7 @@ class UrlManager
         return trim($text, $defaultSign);
     }
 
-    public function prepareEnglishSlug(string $text, string $defaultSign = '-'): string
+    public function transliterateEnglishSlug(string $text, string $defaultSign = '-'): string
     {
         $text = str_replace('%', ' percent', $text);
         $text = str_replace('$', ' dollars', $text);
@@ -82,5 +82,19 @@ class UrlManager
         $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
 
         return trim($text, $defaultSign);
+    }
+    
+    public function transliterateEnglishPath(string $path): string
+    {
+        $result = [];
+        foreach (explode('/', $path) as $slug) {
+            $slug = $this->prepareEnglishSlug($slug);
+            if (empty($slug)) {
+                continue;
+            }
+            $result[] = $slug;
+        }
+        
+        return '/' . implode('/', $result);
     }
 }
