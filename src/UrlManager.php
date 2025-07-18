@@ -14,7 +14,7 @@ class UrlManager
         'д' => 'd',
         'е' => 'e',
         'ё' => 'yo',
-        'ж' => 'j',
+        'ж' => 'zh',
         'з' => 'z',
         'и' => 'i',
         'й' => 'y',
@@ -47,7 +47,7 @@ class UrlManager
 
     // Возвращает текст в транслитерированном виде, с заменой на символ "-" всех символов кроме букв, цифр и тире
     // Функция создана потому, что Transliterator::create('Any-Latin; Latin-ASCII')->transliterate($string); работает не так как хотелось.
-    // Символ "-" выбран согалсно рекомендации https://developers.google.com/search/docs/crawling-indexing/url-structure?hl=ru
+    // Символ "-" выбран согласно рекомендации https://developers.google.com/search/docs/crawling-indexing/url-structure?hl=ru
     public function transliterate(string $text, string $defaultSign = '-'): string
     {
         // todo знаки нужно заменять на склонения - подбирать в зависиости от числа до знака %/$/etc
