@@ -1,5 +1,13 @@
 FROM php:7-fpm-buster
 
+# Репозитории Debian Buster (10) были удалены с основных зеркал, так как достигли конца срока поддержки (EOL — End of Life).
+# В результате они перемещены в архив archive.debian.org.
+RUN sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g' /etc/apt/sources.list && \
+    sed -i 's|http://security.debian.org|http://archive.debian.org/debian-security|g' /etc/apt/sources.list && \
+    sed -i '/^deb.*security.*buster.*updates/d' /etc/apt/sources.list && \
+    echo 'Acquire::Check-Valid-Until "false";' > /etc/apt/apt.conf.d/99no-check-valid-until && \
+    apt-get update
+
 # используем apt-get вместо apt, чтобы не получать: WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 RUN apt-get update
 
