@@ -16,7 +16,7 @@ jobs:
     - name: "Checkout on commit in the repository"
       uses: actions/checkout@v2
     - name: "Build the Docker image"
-      run: docker build -t yapro/seo-bundle:latest -f ./Dockerfile ./
+      run: docker build --build-arg "PHP_FPM_IMAGE=php8" -t yapro/seo-bundle:latest -f ./Dockerfile ./
     # run command in virtual machine
     - run: id
     - run: pwd
