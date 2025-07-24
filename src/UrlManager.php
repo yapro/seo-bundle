@@ -35,7 +35,7 @@ class UrlManager
         'ш' => 'sh',
         'щ' => 'sch', // Это «исторически сложившаяся» транслитерация (можно 'щ' => 'sh' но теряется отличие от ш)
         'ъ' => 'i',
-        'ы' => 'y', // y - более точное фонетическое соответствие, чем i (еще использование i может путать с и)
+        'ы' => 'y', // y - более точное фонетическое соответствие, чем i (еще i может путать с и), однако: silniy VS silnyy
         'ь' => '', // лучше удалять, чем использовать i (медь → med, дочь → doch)
         'э' => 'e',
         'ю' => 'yu',
@@ -51,11 +51,12 @@ class UrlManager
     public function transliterate(string $text, string $defaultSign = '-'): string
     {
         // todo знаки нужно заменять на склонения - подбирать в зависиости от числа до знака %/$/etc
+        $text = str_replace('+', ' плюс ', $text);
         $text = str_replace('%', ' процентов', $text);
         $text = str_replace('$', ' долларов', $text);
         $text = str_replace('₽', ' рублей', $text);
         $text = str_replace('¥', ' йен', $text);
-        $text = mb_strtolower($text);
+        $text = mb_strtolower(trim($text));
         $text = strtr($text, $this->translit);
         $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
         $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
