@@ -58,10 +58,22 @@ class UrlManager
         $text = str_replace('¥', ' йен', $text);
         $text = mb_strtolower(trim($text));
         $text = strtr($text, $this->translit);
+        $text = $this->replaceDashes($text);
         $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
         $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
 
         return trim($text, $defaultSign);
+    }
+
+    private function replaceDashes(string $text): string
+    {
+        $text = str_replace('—', '-', $text);
+        $text = str_replace('–', '-', $text);
+        $text = str_replace(' - ', '-', $text);
+        $text = str_replace('- ', '-', $text);
+        $text = str_replace(' -', '-', $text);
+
+        return str_replace('.', '-', $text); // чтобы site.ru превращался в site-ru
     }
 
     public function transliterateEnglishSlug(string $text, string $defaultSign = '-'): string
@@ -71,13 +83,9 @@ class UrlManager
         $text = str_replace('₽', ' rubles', $text);
         $text = str_replace('¥', ' yen', $text);
         $text = str_replace('+', ' plus', $text);
-        $text = str_replace('—', '-', $text);
-        $text = str_replace('–', '-', $text);
-        $text = str_replace(' - ', '-', $text);
-        $text = str_replace('- ', '-', $text);
-        $text = str_replace(' -', '-', $text);
         $text = str_replace('\'s ', ' ', $text); // children's cards -> children cards
         $text = str_replace('`s ', ' ', $text); // children`s cards -> children cards
+        $text = $this->replaceDashes($text);
         $text = mb_strtolower($text);
         $text = preg_replace('/[^-a-z0-9]/sUi', $defaultSign, $text);
         $text = preg_replace('/[\\' . $defaultSign . ']{2,}/', $defaultSign, $text);
