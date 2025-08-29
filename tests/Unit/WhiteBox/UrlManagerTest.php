@@ -32,6 +32,9 @@ class UrlManagerTest extends TestCase
 
         $actual = $object->transliterateEnglishSlug(' foo — bar – baz ');
         $this->assertSame('foo-bar-baz', $actual);
+
+        $actual = $object->transliterateEnglishSlug('foo--bar..baz');
+        $this->assertSame('foo-bar-baz', $actual);
     }
 
     public function testPrepareEnglishPath(): void
